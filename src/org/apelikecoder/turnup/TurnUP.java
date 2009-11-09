@@ -14,10 +14,8 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
-import android.webkit.Plugin.PreferencesClickHandler;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
