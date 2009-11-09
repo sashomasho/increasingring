@@ -4,6 +4,8 @@
     <string name="app_name">Turn UP</string>
     <string name="prefs_category_alarm_title">Alarm settings</string>
     <string name="prefs_category_ringer_title">Incoming call ring settings</string>
+    <string name="prefs_category_about_title">About</string>
+    <string name="prefs_about_title">About this software</string>
     <string name="prefs_ringer_service_enabled">Enabled for incoming calls</string>
     <string name="prefs_ringer_service_enabled_summary">Enabled increasing ring</string>
     <string name="prefs_alarm_service_enabled">Enable for alarms</string>
@@ -12,7 +14,15 @@
     <string name="prefs_ringer_respect_silence">Respect silence</string>
     <string name="prefs_ringer_respect_silence_summary">Don\'t increase volume when ringing mode is set to silence/vibrate.</string>
     <string name="prefs_delay_interval_title">Delay interval</string>
+    <string name="prefs_visit_homepage">Go to homepage</string>
+    <string name="homepage">http://turn-up.googlecode.com</string>
     <string name="current_value">Current value: %s</string>
+    <string name="about_text">
+\nSee http://turn-up.googlecode.com for more info.
+\n
+\nVersion: ${VERSION}
+\n
+    </string>
     <string-array name="delay_display_values">
         <item>Short (1s)</item>
         <item>Normal (3s)</item>

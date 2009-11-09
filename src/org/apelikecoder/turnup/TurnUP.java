@@ -1,9 +1,11 @@
 package org.apelikecoder.turnup;
 
+import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -14,12 +16,15 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
-public class TurnUP extends PreferenceActivity implements OnSharedPreferenceChangeListener {
+public class TurnUP extends PreferenceActivity implements OnPreferenceClickListener, OnSharedPreferenceChangeListener {
 
     AudioManager mAudioManager;
     
@@ -31,6 +36,7 @@ public class TurnUP extends PreferenceActivity implements OnSharedPreferenceChan
     public final static String PREFS_KEY_RINGER_DELAY_INTREVAL = "prefs_ringer_delay_interval";
     public final static String PREFS_KEY_ALARM_DELAY_INTREVAL = "prefs_alarm_delay_interval";
     public final static int DEFAULT_DELAY_INTERVAL = 3;
+    private final static String PREFS_SHOW_ABOUT_DIALOG = "prefs_show_about_dialog";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +119,16 @@ public class TurnUP extends PreferenceActivity implements OnSharedPreferenceChan
         prefCategory.addPreference(listPref);
         listPref.setDependency(PREFS_KEY_ENABLE_ALARM_SERVICE);
         setDelaySummary(sharedPrefs, PREFS_KEY_ALARM_DELAY_INTREVAL);
+        
+        //ABOUT SETTINGS
+        prefCategory = new PreferenceCategory(this);
+        prefCategory.setTitle(R.string.prefs_category_about_title);
+        prefScreen.addPreference(prefCategory);
+        PreferenceScreen aboutPrefScreen = getPreferenceManager().createPreferenceScreen(this);
+        aboutPrefScreen.setTitle(R.string.prefs_about_title);
+        aboutPrefScreen.setKey(PREFS_SHOW_ABOUT_DIALOG);
+        aboutPrefScreen.setOnPreferenceClickListener(this);
+        prefScreen.addPreference(aboutPrefScreen);
     }
 
     private void setMaxVolumeSummary(SharedPreferences sp, String prefKey, int type) {
@@ -190,4 +206,32 @@ public class TurnUP extends PreferenceActivity implements OnSharedPreferenceChan
             }
         }
     }
+
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+        if (preference.getKey().equals(PREFS_SHOW_ABOUT_DIALOG)) {
+            View view = View.inflate(this, R.layout.dialog, null);
+            ((TextView ) view).setText(getString(R.string.about_text).replace("\\n","\n").replace("${VERSION}", getVersion(this)));
+            new AlertDialog.Builder(this)
+                .setTitle(R.string.app_name)
+                .setView(view)
+                .setIcon(R.drawable.turnup48)
+                .setPositiveButton(android.R.string.ok, null)
+                .create()
+                .show();
+        }
+        return false;
+    }
+    
+    public static String getVersion(Context context) {
+        final String unknown = "Unknown";
+        try {
+            return context.getPackageManager()
+                   .getPackageInfo(context.getPackageName(), 0)
+                   .versionName;
+        } catch(NameNotFoundException ex) {
+        }
+        return unknown;
+    }
+
 }
