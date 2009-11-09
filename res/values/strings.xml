@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Ringer!</string>
+    <string name="app_name">Turn UP</string>
+    <string name="prefs_category_alarm_title">Alarm settings</string>
+    <string name="prefs_category_ringer_title">Incoming call ring settings</string>
+    <string name="prefs_ringer_service_enabled">Enabled for incoming calls</string>
+    <string name="prefs_ringer_service_enabled_summary">Enabled increasing ring</string>
+    <string name="prefs_alarm_service_enabled">Enable for alarms</string>
+    <string name="prefs_alarm_service_enabled_summary">Enable increasing ring for alarms (ONLY STOCK ALARM APPLICATION!)</string>
+    <string name="prefs_max_volume">Maximum volume level</string>
+    <string name="prefs_ringer_respect_silence">Respect silence</string>
+    <string name="prefs_ringer_respect_silence_summary">Don\'t increase volume when ringing mode is set to silence/vibrate.</string>
+    <string name="prefs_delay_interval_title">Delay interval</string>
+    <string name="current_value">Current value: %s</string>
+    <string-array name="delay_display_values">
+        <item>Short (1s)</item>
+        <item>Normal (3s)</item>
+        <item>Long (5s)</item>
+    </string-array>
+    <string-array name="delay_values">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+    </string-array>
+</resources>
+

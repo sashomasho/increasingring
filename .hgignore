@@ -1,0 +1,7 @@
+syntax: glob
+*.svn-base
+syntax: regexp
+.*svn.*
+bin/.*
+gen/.*
+

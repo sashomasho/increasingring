@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="org.apelikecoder.turnup"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <application android:icon="@drawable/turnup48" android:label="@string/app_name">
+        <activity android:name=".TurnUP"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver android:name=".AlarmListener">
+            <intent-filter>
+               <action android:name="com.android.alarmclock.ALARM_ALERT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".IncomingCallListener">
+			<intent-filter>
+				<action	android:name="android.intent.action.PHONE_STATE"/>
+			</intent-filter>
+        </receiver>
+        <service android:name=".RingVolumeControlService"/>
+        <service android:name=".AlarmVolumeControlService"/>
+
+    </application>
+    <uses-sdk android:minSdkVersion="3" />
+    <user-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+</manifest> 
