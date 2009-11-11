@@ -20,8 +20,8 @@ public class AlarmVolumeControlService extends VolumeControlService {
     protected void reloadSettings() {
         setStreamType(AudioManager.STREAM_ALARM);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        setMaxVolume(sp.getInt(TurnUP.PREFS_KEY_MAX_ALARM_VOLUME, getStreamMaxVolume()));
-        setDelay(Integer.valueOf(sp.getString(TurnUP.PREFS_KEY_ALARM_DELAY_INTREVAL, "0")));
+        setMaxVolume(sp.getInt(PreferenceKeys.Alarm.MAX_VOLUME, getStreamMaxVolume()));
+        setDelay(Integer.valueOf(sp.getString(PreferenceKeys.Alarm.DELAY_INTREVAL, "0")));
     }
 
     @Override

@@ -11,6 +11,10 @@ public class RingVolumeControlService extends VolumeControlService {
     private int mStartupVolume;
     private boolean mRespectSilence;
     private final static String TAG = "TurnUP/RingVolumeControlService";
+    private boolean mShouldVibrate;
+    private static final int UNKNOWN_VIBRATION_SETTINGS = -123;//something meaningful here
+    private int mVibrationStartupSettings = UNKNOWN_VIBRATION_SETTINGS ;
+    private int mVibrationStartupLevel;
 
     @Override
     protected void startVolumeIncrease() {
@@ -26,7 +30,20 @@ public class RingVolumeControlService extends VolumeControlService {
     @Override
     protected void stop() {
         setCurrentVolume(mStartupVolume);
+        if (mVibrationStartupSettings != UNKNOWN_VIBRATION_SETTINGS) {
+            android.util.Log.d("TurnUP/RingVolumeService", "RESTORE VIBRATION");
+            AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
+            audioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, mVibrationStartupSettings);
+        }
         super.stop();
+    }
+    
+    @Override
+    protected void increaseVolume() {
+        super.increaseVolume();
+        if (mShouldVibrate && getCurrentVolume() >= mVibrationStartupLevel) {
+            enableVibrateSetting();
+        }
     }
 
     @Override
@@ -34,9 +51,16 @@ public class RingVolumeControlService extends VolumeControlService {
         setStreamType(AudioManager.STREAM_RING);
         mTelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        mRespectSilence = sp.getBoolean(TurnUP.PREFS_KEY_RESPECT_SILENCE, true);
-        setMaxVolume(sp.getInt(TurnUP.PREFS_KEY_MAX_RINGER_VOLUME, getStreamMaxVolume()));
-        setDelay(Integer.valueOf(sp.getString(TurnUP.PREFS_KEY_RINGER_DELAY_INTREVAL, "0")));
+        mRespectSilence = sp.getBoolean(PreferenceKeys.Ringer.RESPECT_SILENCE, true);
+        int maxVolume = getStreamMaxVolume(); 
+        setMaxVolume(sp.getInt(PreferenceKeys.Ringer.MAX_VOLUME, maxVolume));
+        setDelay(Integer.valueOf(sp.getString(PreferenceKeys.Ringer.DELAY_INTREVAL, "0")));
+        boolean vibratorOn = isGlobalVibrateOn();
+        if (!vibratorOn) {
+            mShouldVibrate = sp.getBoolean(PreferenceKeys.Ringer.ENABLE_VIBRATOR, false);
+            android.util.Log.d("TurnUP", "mShouldVibrate " + mShouldVibrate);
+            mVibrationStartupLevel = sp.getInt(PreferenceKeys.Ringer.VIBRATOR_STARTUP_LEVEL, maxVolume);;
+        }
     }
 
     private boolean isRinging() {
@@ -47,4 +71,20 @@ public class RingVolumeControlService extends VolumeControlService {
     protected boolean shouldStop() {
         return !isRinging();
     }
+    
+    private boolean isGlobalVibrateOn() {
+        AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
+        return audioManager.getVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER) == AudioManager.VIBRATE_SETTING_ON;
+        //return audioManager.shouldVibrate(AudioManager.VIBRATE_TYPE_RINGER);
+    }
+    
+    private void enableVibrateSetting() {
+        if (mVibrationStartupSettings == UNKNOWN_VIBRATION_SETTINGS) {
+            android.util.Log.d("TurnUP/RingVolumeService", "ENABLE VIBRATION");
+            AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
+            mVibrationStartupSettings = audioManager.getVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER);
+            audioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ON);
+        }
+    }
+
 }

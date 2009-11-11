@@ -12,7 +12,7 @@ public class IncomingCallListener extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if(intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-            if (sp.getBoolean(TurnUP.PREFS_KEY_ENABLE_RINGER_SERVICE, false))
+            if (sp.getBoolean(PreferenceKeys.Ringer.ENABLE_SERVICE, false))
                 context.startService(new Intent(context, RingVolumeControlService.class));
             else
                 android.util.Log.d("IncominCallListener", "SERVICE NOT ENABLED");

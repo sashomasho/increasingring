@@ -6,16 +6,23 @@
     <string name="prefs_category_ringer_title">Incoming call ring settings</string>
     <string name="prefs_category_about_title">About</string>
     <string name="prefs_about_title">About this software</string>
-    <string name="prefs_ringer_service_enabled">Enabled for incoming calls</string>
+    <string name="prefs_ringer_service_enabled">Enable for incoming calls</string>
     <string name="prefs_ringer_service_enabled_summary">Enable increasing ring</string>
     <string name="prefs_alarm_service_enabled">Enable for alarms</string>
     <string name="prefs_alarm_service_enabled_summary">Enable increasing ring for alarms (ONLY STOCK ALARM APPLICATION!)</string>
     <string name="prefs_max_volume">Maximum volume level</string>
+    <string name="prefs_ringer_max_volume_summary_current_value">Increase the ringing volume up to this value: %s</string>
+    <string name="prefs_alarm_max_volume_summary_current_value">Increase the alarm volume up to this value: %s</string>
+    <string name="prefs_startup_vibration_summary_current_value">Start the vibration when the volume reaches this value: %s</string>
     <string name="prefs_ringer_respect_silence">Respect silence</string>
     <string name="prefs_ringer_respect_silence_summary">Don\'t increase volume when ringing mode is set to silence/vibrate.</string>
+    <string name="prefs_ringer_vibration_enable">Enable vibration</string>
+    <string name="prefs_ringer_vibration_enable_summary">Enable vibration for ringing if it is not turned on</string>
+    <string name="prefs_ringer_vibration_startup_level">Vibration startup level</string>
+    <string name="prefs_ringer_vibration_startup_level_summary">Start vibration when increasing volume reaches this level: %s</string>
     <string name="prefs_delay_interval_title">Interval between increases</string>
-    <string name="homepage">http://turn-up.googlecode.com</string>
-    <string name="current_value">Current value: %s</string>
+    <string name="msg_wrong_vibration_settings">Vibration will NOT  be turned on. Please check your settings</string>
+    <string name="prefs_increasing_interval_current_value">Increase the volume every %s seconds</string>
     <string name="about_text">
 \nSee http://turn-up.googlecode.com for more info.
 \n

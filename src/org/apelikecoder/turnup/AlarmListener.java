@@ -12,7 +12,7 @@ public class AlarmListener extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         android.util.Log.d("TurnUP/AlarmListener", "ALAAAAAAARM! " + intent.toString());
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        if (sp.getBoolean(TurnUP.PREFS_KEY_ENABLE_ALARM_SERVICE, false))
+        if (sp.getBoolean(PreferenceKeys.Alarm.ENABLE_SERVICE, false))
             context.startService(new Intent(context, AlarmVolumeControlService.class));
     }
 

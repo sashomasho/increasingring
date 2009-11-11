@@ -63,7 +63,7 @@ abstract public class VolumeControlService extends Service {
     
     protected void setDelay(int delay) {
         if (delay == 0)
-            delay = TurnUP.DEFAULT_DELAY_INTERVAL;
+            delay = TurnUpSettings.DEFAULT_DELAY_INTERVAL;
         mIncreaseVolumeDelay = delay * 1000;
     }
     
