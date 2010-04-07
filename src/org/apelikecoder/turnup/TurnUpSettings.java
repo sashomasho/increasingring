@@ -1,11 +1,9 @@
 package org.apelikecoder.turnup;
 
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.DialogPreference;
@@ -13,20 +11,15 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 abstract public class TurnUpSettings extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
     AudioManager mAudioManager;
 
     public final static int DEFAULT_DELAY_INTERVAL = 3;
-    private final static int ID_MENU_ABOUT = 1;
 
     abstract protected void initView();
     @Override
@@ -98,46 +91,4 @@ abstract public class TurnUpSettings extends PreferenceActivity implements OnSha
             }
         }
     }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        boolean result = super.onCreateOptionsMenu(menu);
-        MenuItem m = menu.add(0, ID_MENU_ABOUT, 0, R.string.prefs_about_title);
-        m.setIcon(android.R.drawable.ic_menu_info_details);
-        return result;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        boolean result = super.onOptionsItemSelected(item);
-        if (item.getItemId() == ID_MENU_ABOUT) {
-            showAboutDialog();
-        }
-        return result;
-    }
-
-    
-    private void showAboutDialog() {
-        View view = View.inflate(this, R.layout.dialog, null);
-        ((TextView ) view).setText(getString(R.string.about_text).replace("\\n","\n").replace("${VERSION}", getVersion(this)));
-        new AlertDialog.Builder(this)
-            .setTitle(R.string.app_name)
-            .setView(view)
-            .setIcon(R.drawable.turnup48)
-            .setPositiveButton(android.R.string.ok, null)
-            .create()
-            .show();
-    }
-
-    public static String getVersion(Context context) {
-        final String unknown = "Unknown";
-        try {
-            return context.getPackageManager()
-                   .getPackageInfo(context.getPackageName(), 0)
-                   .versionName;
-        } catch(NameNotFoundException ex) {
-        }
-        return unknown;
-    }
-
 }

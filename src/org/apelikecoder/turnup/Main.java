@@ -20,6 +20,10 @@ public class Main extends TabActivity {
         tabHost.addTab(tabHost.newTabSpec("tab2")
                 .setIndicator("Alarm", getResources().getDrawable(R.drawable.ic_tab_alarm))
                 .setContent(new Intent(this, AlarmSettings.class)));
+        tabHost.addTab(tabHost.newTabSpec("tab2")
+                .setIndicator("About", getResources().getDrawable(android.R.drawable.ic_dialog_info))
+                .setContent(new Intent(this, About.class)));
+        
     }
 
 }
