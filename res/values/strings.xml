@@ -17,17 +17,18 @@
     <string name="prefs_ringer_respect_silence">Respect silence</string>
     <string name="prefs_ringer_respect_silence_summary">Don\'t increase volume when ringing mode is set to silence/vibrate.</string>
     <string name="prefs_ringer_vibration_enable">Enable vibration</string>
-    <string name="prefs_ringer_vibration_enable_summary">Enable vibration for ringing if it is not turned on</string>
+    <string name="prefs_ringer_vibration_enable_summary">Enable vibration for ringing if it is switched off</string>
     <string name="prefs_ringer_vibration_startup_level">Vibration startup level</string>
     <string name="prefs_ringer_vibration_startup_level_summary">Start vibration when increasing volume reaches this level: %s</string>
     <string name="prefs_delay_interval_title">Interval between increases</string>
     <string name="msg_wrong_vibration_settings">Vibration will NOT  be turned on. Please check your settings</string>
     <string name="prefs_increasing_interval_current_value">Increase the volume every %s seconds</string>
-    <string name="about_text">
+    <string name="about_info">This is a small, lightweight utility which adds a basic functionality, well known on other mobile platforms - it adds an ability to increase your ringing or alarm volume gradually to some predefined level.
+     It\'s very suitable if you are used to lower the ringing volume at your office, but you forget to switch it back when you leave. You can even turn off the vibration option in the phone settings and adjust the program to start it at specific volume level.
+     The program will not increase the volume above its maximum ringing level. 
+    </string>
+    <string name="about_text">\nVersion: ${VERSION}
 \nSee http://turn-up.googlecode.com for more info.
-\n
-\nVersion: ${VERSION}
-\n
     </string>
     <string-array name="delay_display_values">
         <item>Short (1s)</item>
