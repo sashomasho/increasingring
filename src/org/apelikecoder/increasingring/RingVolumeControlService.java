@@ -10,7 +10,7 @@ public class RingVolumeControlService extends VolumeControlService {
     private TelephonyManager mTelephonyManager;
     private int mStartupVolume;
     private boolean mRespectSilence;
-    private final static String TAG = "TurnUP/RingVolumeControlService";
+    private final static String TAG = "RingVolumeControlService";
     private boolean mShouldVibrate;
     private static final int UNKNOWN_VIBRATION_SETTINGS = -123;//something meaningful here
     private int mVibrationStartupSettings = UNKNOWN_VIBRATION_SETTINGS ;
@@ -31,7 +31,7 @@ public class RingVolumeControlService extends VolumeControlService {
     protected void stop() {
         setCurrentVolume(mStartupVolume);
         if (mVibrationStartupSettings != UNKNOWN_VIBRATION_SETTINGS) {
-            android.util.Log.d("TurnUP/RingVolumeService", "RESTORE VIBRATION");
+            android.util.Log.d(TAG, "RESTORE VIBRATION");
             AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
             audioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, mVibrationStartupSettings);
         }
@@ -58,7 +58,7 @@ public class RingVolumeControlService extends VolumeControlService {
         boolean vibratorOn = isGlobalVibrateOn();
         if (!vibratorOn) {
             mShouldVibrate = sp.getBoolean(PreferenceKeys.Ringer.ENABLE_VIBRATOR, false);
-            android.util.Log.d("TurnUP", "mShouldVibrate " + mShouldVibrate);
+            android.util.Log.d(TAG, "mShouldVibrate " + mShouldVibrate);
             mVibrationStartupLevel = sp.getInt(PreferenceKeys.Ringer.VIBRATOR_STARTUP_LEVEL, maxVolume);;
         }
     }
@@ -80,7 +80,7 @@ public class RingVolumeControlService extends VolumeControlService {
     
     private void enableVibrateSetting() {
         if (mVibrationStartupSettings == UNKNOWN_VIBRATION_SETTINGS) {
-            android.util.Log.d("TurnUP/RingVolumeService", "ENABLE VIBRATION");
+            android.util.Log.d(TAG, "ENABLE VIBRATION");
             AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
             mVibrationStartupSettings = audioManager.getVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER);
             audioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ON);

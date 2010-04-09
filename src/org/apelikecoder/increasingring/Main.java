@@ -1,7 +1,5 @@
 package org.apelikecoder.increasingring;
 
-import org.apelikecoder.increasingring.R;
-
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;

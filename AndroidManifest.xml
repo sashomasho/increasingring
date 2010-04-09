@@ -32,8 +32,4 @@
     <uses-sdk android:minSdkVersion="4" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     
-    <meta-data android:name="com.a0soft.gphone.aTrackDog.webURL" android:value="http://turn-up.googlecode.com" />
-    <meta-data android:name="com.a0soft.gphone.aTrackDog.noMarket" android:value="true" />
-    <meta-data android:name="com.a0soft.gphone.aTrackDog.testVersion" android:value="99" />
-    
 </manifest> 

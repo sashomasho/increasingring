@@ -1,7 +1,5 @@
 package org.apelikecoder.increasingring;
 
-import org.apelikecoder.increasingring.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;

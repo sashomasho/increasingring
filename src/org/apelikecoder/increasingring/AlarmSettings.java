@@ -1,7 +1,5 @@
 package org.apelikecoder.increasingring;
 
-import org.apelikecoder.increasingring.R;
-
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.preference.CheckBoxPreference;
