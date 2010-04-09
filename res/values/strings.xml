@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Ringer!</string>
-    <string name="app_name">Turn UP</string>
+    <string name="app_name">Increasing Ring</string>
     <string name="prefs_category_alarm_title">Alarm settings</string>
     <string name="prefs_category_ringer_title">Incoming call ring settings</string>
     <string name="prefs_category_about_title">About</string>
@@ -9,10 +8,10 @@
     <string name="prefs_ringer_service_enabled">Enable for incoming calls</string>
     <string name="prefs_ringer_service_enabled_summary">Enable increasing ring</string>
     <string name="prefs_alarm_service_enabled">Enable for alarms</string>
-    <string name="prefs_alarm_service_enabled_summary">Enable increasing ring for alarms (ONLY STOCK ALARM APPLICATION!)</string>
+    <string name="prefs_alarm_service_enabled_summary">Enable increasing ring for alarms (DeskClock and stock Alarm apps only)</string>
     <string name="prefs_max_volume">Maximum volume level</string>
-    <string name="prefs_ringer_max_volume_summary_current_value">Increase the ringing volume up to this value: %s</string>
-    <string name="prefs_alarm_max_volume_summary_current_value">Increase the alarm volume up to this value: %s</string>
+    <string name="prefs_ringer_max_volume_summary_current_value">Start from your current ringing volume and increase it up to this value: %s</string>
+    <string name="prefs_alarm_max_volume_summary_current_value">Start form the lowest alarm level and increase up to this value: %s</string>
     <string name="prefs_startup_vibration_summary_current_value">Start the vibration when the volume reaches this value: %s</string>
     <string name="prefs_ringer_respect_silence">Respect silence</string>
     <string name="prefs_ringer_respect_silence_summary">Don\'t increase volume when ringing mode is set to silence/vibrate.</string>
@@ -23,9 +22,8 @@
     <string name="prefs_delay_interval_title">Interval between increases</string>
     <string name="msg_wrong_vibration_settings">Vibration will NOT  be turned on. Please check your settings</string>
     <string name="prefs_increasing_interval_current_value">Increase the volume every %s seconds</string>
-    <string name="about_info">This is a small, lightweight utility which adds a basic functionality, well known on other mobile platforms - it adds an ability to increase your ringing or alarm volume gradually to some predefined level.
-     It\'s very suitable if you are used to lower the ringing volume at your office, but you forget to switch it back when you leave. You can even turn off the vibration option in the phone settings and adjust the program to start it at specific volume level.
-     The program will not increase the volume above its maximum ringing level. 
+    <string name="about_info"> This is a small, lightweight utility which adds a basic functionality, well known on other mobile platforms - it adds an ability to increase your ringing or alarm volume gradually to some predefined level.
+     \nIt\'s very suitable if you are used to lower the ringing volume at quiet places, but you forget to switch it back when you leave. You can even turn off the vibration option in the phone\'s settings and adjust the program to start it at specific volume level while it's ringing increasingly.
     </string>
     <string name="about_text">\nVersion: ${VERSION}
 \nSee http://turn-up.googlecode.com for more info.
