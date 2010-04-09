@@ -1,4 +1,6 @@
-package org.apelikecoder.turnup;
+package org.apelikecoder.increasingring;
+
+import org.apelikecoder.increasingring.R;
 
 import android.app.AlertDialog.Builder;
 import android.content.Context;
@@ -15,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
-abstract public class TurnUpSettings extends PreferenceActivity implements OnSharedPreferenceChangeListener {
+abstract public class RingSettingsBase extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
     AudioManager mAudioManager;
 

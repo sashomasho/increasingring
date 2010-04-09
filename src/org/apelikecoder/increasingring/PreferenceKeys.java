@@ -1,4 +1,4 @@
-package org.apelikecoder.turnup;
+package org.apelikecoder.increasingring;
 
 public class PreferenceKeys {
     static class Alarm {

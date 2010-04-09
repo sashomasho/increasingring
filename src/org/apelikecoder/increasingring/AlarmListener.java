@@ -1,4 +1,4 @@
-package org.apelikecoder.turnup;
+package org.apelikecoder.increasingring;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

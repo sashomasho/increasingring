@@ -1,4 +1,6 @@
-package org.apelikecoder.turnup;
+package org.apelikecoder.increasingring;
+
+import org.apelikecoder.increasingring.R;
 
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -7,7 +9,7 @@ import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 
-public class AlarmSettings extends TurnUpSettings {
+public class AlarmSettings extends RingSettingsBase {
 
     @Override
     protected void initView() {

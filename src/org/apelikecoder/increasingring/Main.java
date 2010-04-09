@@ -1,4 +1,6 @@
-package org.apelikecoder.turnup;
+package org.apelikecoder.increasingring;
+
+import org.apelikecoder.increasingring.R;
 
 import android.app.TabActivity;
 import android.content.Intent;

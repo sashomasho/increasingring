@@ -1,4 +1,4 @@
-package org.apelikecoder.turnup;
+package org.apelikecoder.increasingring;
 
 import android.app.Service;
 import android.content.Intent;
@@ -63,7 +63,7 @@ abstract public class VolumeControlService extends Service {
     
     protected void setDelay(int delay) {
         if (delay == 0)
-            delay = TurnUpSettings.DEFAULT_DELAY_INTERVAL;
+            delay = RingSettingsBase.DEFAULT_DELAY_INTERVAL;
         mIncreaseVolumeDelay = delay * 1000;
     }
     
