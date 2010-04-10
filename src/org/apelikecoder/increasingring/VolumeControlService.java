@@ -9,7 +9,7 @@ import android.os.Message;
 
 abstract public class VolumeControlService extends Service {
     
-    private final static String TAG = "TurnUP/VolumeControlService";
+    private final static String TAG = "VolumeControlService";
     
     private AudioManager mAudioManager;
     private MyHandler mHandler;

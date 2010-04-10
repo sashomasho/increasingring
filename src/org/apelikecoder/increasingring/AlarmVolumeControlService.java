@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 
 public class AlarmVolumeControlService extends VolumeControlService {
 
-    private final static String TAG = "TurnUP/AlarmVolumeControlService";
+    private final static String TAG = "AlarmVolumeControlService";
     
     @Override
     protected void startVolumeIncrease() {

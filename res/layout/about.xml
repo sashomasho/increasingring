@@ -4,12 +4,18 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        android:id="@+id/header">
+    
     <ImageView
         android:id="@+id/appicon"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
         android:src="@drawable/icon"
         android:layout_margin="10dp"
         />
@@ -22,11 +28,11 @@
         android:autoLink="web"
         android:textSize="16sp"
         />
-     
+     </RelativeLayout>
     <ScrollView
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:layout_below="@id/webbage"
+        android:layout_below="@id/header"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
