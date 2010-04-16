@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="lower_the_ringin_volume_on_pickup">Lower the ringing volume on pickup</string>
+    <string name="enable_pickup_attenuation">Enable pickup attenuation</string>
     <string name="app_name">Increasing Ring</string>
     <string name="prefs_category_alarm_title">Alarm settings</string>
     <string name="prefs_category_ringer_title">Incoming call ring settings</string>

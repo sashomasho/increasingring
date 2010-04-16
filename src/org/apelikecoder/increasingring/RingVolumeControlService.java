@@ -15,7 +15,18 @@ public class RingVolumeControlService extends VolumeControlService {
     private static final int UNKNOWN_VIBRATION_SETTINGS = -123;//something meaningful here
     private int mVibrationStartupSettings = UNKNOWN_VIBRATION_SETTINGS ;
     private int mVibrationStartupLevel;
-
+    
+    private static final int ATTENUATED_VOLUME_LEVEL = 2;
+    
+    private PickupDetector pickup;
+    private boolean isAttenuated;
+    
+    private PickupDetector.Listener listener = new PickupDetector.Listener() {
+        public void onPickup() {
+            attenuate();
+        }
+    };
+    
     @Override
     protected void startVolumeIncrease() {
         mStartupVolume = getCurrentVolume();
@@ -35,14 +46,18 @@ public class RingVolumeControlService extends VolumeControlService {
             AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
             audioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, mVibrationStartupSettings);
         }
+        if (pickup != null)
+            pickup.stopListening();
         super.stop();
     }
     
     @Override
     protected void increaseVolume() {
+        if (isAttenuated)
+            return;
         super.increaseVolume();
         if (mShouldVibrate && getCurrentVolume() >= mVibrationStartupLevel) {
-            enableVibrateSetting();
+            setVibration(true);
         }
     }
 
@@ -51,6 +66,10 @@ public class RingVolumeControlService extends VolumeControlService {
         setStreamType(AudioManager.STREAM_RING);
         mTelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sp.getBoolean(PreferenceKeys.Ringer.ENABLE_PICKUP_ATT, false)) {
+            pickup = new PickupDetector(this, listener);
+            pickup.startListening();
+        }
         mRespectSilence = sp.getBoolean(PreferenceKeys.Ringer.RESPECT_SILENCE, true);
         int maxVolume = getStreamMaxVolume(); 
         setMaxVolume(sp.getInt(PreferenceKeys.Ringer.MAX_VOLUME, maxVolume));
@@ -78,13 +97,18 @@ public class RingVolumeControlService extends VolumeControlService {
         //return audioManager.shouldVibrate(AudioManager.VIBRATE_TYPE_RINGER);
     }
     
-    private void enableVibrateSetting() {
+    private void setVibration(boolean on) {
+        AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
         if (mVibrationStartupSettings == UNKNOWN_VIBRATION_SETTINGS) {
-            android.util.Log.d(TAG, "ENABLE VIBRATION");
-            AudioManager audioManager = (AudioManager) this.getSystemService(AUDIO_SERVICE);
             mVibrationStartupSettings = audioManager.getVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER);
-            audioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ON);
         }
+        android.util.Log.d(TAG, "ENABLE VIBRATION " + on);
+        audioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, on ? AudioManager.VIBRATE_SETTING_ON : AudioManager.VIBRATE_SETTING_OFF);
     }
 
+    private void attenuate() {
+        isAttenuated = true;
+        setCurrentVolume(ATTENUATED_VOLUME_LEVEL);
+        setVibration(false);
+    }
 }

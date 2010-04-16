@@ -72,6 +72,12 @@ public class RingerSettings extends RingSettingsBase {
         sb.setDependency(PreferenceKeys.Ringer.ENABLE_VIBRATOR);
         setMaxVolumeSummary(sharedPrefs, PreferenceKeys.Ringer.VIBRATOR_STARTUP_LEVEL,
                 AudioManager.STREAM_RING, R.string.prefs_ringer_vibration_startup_level_summary);
+
+        chkPref = new CheckBoxPreference(this);
+        chkPref.setKey(PreferenceKeys.Ringer.ENABLE_PICKUP_ATT);
+        chkPref.setTitle(R.string.enable_pickup_attenuation);
+        chkPref.setSummary(R.string.lower_the_ringin_volume_on_pickup);
+        containerPref.addPreference(chkPref);
     }
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
